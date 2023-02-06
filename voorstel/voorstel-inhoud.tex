@@ -3,70 +3,47 @@
 \section{Introductie}%
 \label{sec:introductie}
 
-Waarover zal je bachelorproef gaan? Introduceer het thema en zorg dat volgende zaken zeker duidelijk aanwezig zijn:
+Een van de recente trends als gevolg van de stijging in e-commerce is het gebruik van 3D Javascript frameworks. Deze frameworks bieden web-developers de mogelijkheid aan om 3D interactie te implementeren in hun projecten. Vrijwel een van de meest gebruikte frameworks is Three.js die ons toelaat om 3D objecten te manipuleren in onze browser. Hoewel er een breed aanbod is aan dit soort frameworks gaan web-developers en daaropvolgend bedrijven, niet snel grijpen naar een website die gebruik maakt van 3D interactie.
 
+In deze bachelorproef wil ik dus nagaan of het gebruik van 3D interactie in webshops een positieve impact heeft op het gedrag van gebruikers. Om de invloeden en eventuele voor en/of nadelen in kaart te brengen zal er gebruik gemaakt worden van de UX metrics. Voor de proof-of-concept zullen twee webshops met dezelfde inhoud gemaakt worden, eenmaal op een conventionele manier en eenmaal in 3D gebruikmakend van Three.js. De UX metrics zullen voor beide webshops worden toegepast om zo tot een conclusie te komen welke vorm van interactie bij een webshop superieur is. Met het gevonden resultaat kunnen developers gerichter hun keuze maken over welk soort webshop ze willen maken.
+
+%---------- Literatuurstudie ---------------------------------------------------
+
+\section{Literatuurstudie}%
+\label{sec:literatuurstudie}
+
+Over de laatste jaren zijn apparaten en browsers een stuk sterker geworden, dit laat ons toe om 3D renders te maken. Een van de manieren om dit te doen is door WebGL te gebruiken. WebGL is een technologie die ons toelaat om te tekenen, weer te geven en te communiceren met gesofisticeerde interactieve 3D graphics \autocite{Matsuda2013}. Het zwakpunt van WebGL is dat deze technologie steunt op moeilijke wiskunde. Om die reden is WebGL voor veel web-developers, en vaak ook designers, niet gemakkelijk om te leren. Dit is waar Three.js in het verhaal terecht komt, om web-developers de mogelijkheid te geven om efficiënter en gemakkelijker overweg te kunnen met de WebGL library. Om die reden heeft Ricardo Cabello het framework Three.js gemaakt. Three.js beschikt over meerdere tekenmethodes en kan terugvallen op een 2D visualisatie indien WebGL niet ondersteund is door de browser \autocite{Danchilla2012}.
+
+Three.js is dus een zeer krachtig framework om 3D scenes te creëren in een browser. Alhoewel het gemakkelijker en gebruiksvriendelijker is dan WebGL, is Three.js is nog steeds niet de eerste keuze van web-developers om bijvoorbeeld een webshop te maken. Om een goed beeld te scheppen over welke soort methode de voorkeur zal krijgen bij gebruikers zal er gebruik gemaakt worden van UX metrics.
+
+Statistieken komen overal voor in ons leven en dus ook bij de ervaring van een website-gebruiker. Alle UX metrics moeten kwantificeerbaar en waarneembaar zijn, zo kunnen UX metrics een hulpmiddel zijn om tot een geïnformeerde beslissing te komen en nieuwe inzichten te geven \autocite{Albert2013}.
+
+De UX metrics die voor dit onderzoek zullen gebruikt worden kunnen we onderverdelen in twee categoriëen, namelijk performance metrics en special topics. Volgens \textcite{Albert2013} bestaan performance metrics uit: \begin{itemize}
+	\item Task succes
+	\item Time on task
+	\item Errors
+	\item Efficiency
+	\item Learnability
+\end{itemize}
+En special topics metrics uit:
 \begin{itemize}
-  \item kaderen thema
-  \item de doelgroep
-  \item de probleemstelling en (centrale) onderzoeksvraag
-  \item de onderzoeksdoelstelling
+	\item Live website data
+	\item Card-sorting data
+	\item Accesibility data
+	\item Return-on-investment data
 \end{itemize}
 
-Denk er aan: een typische bachelorproef is \textit{toegepast onderzoek}, wat betekent dat je start vanuit een concrete probleemsituatie in bedrijfscontext, een \textbf{casus}. Het is belangrijk om je onderwerp goed af te bakenen: je gaat voor die \textit{ene specifieke probleemsituatie} op zoek naar een goede oplossing, op basis van de huidige kennis in het vakgebied.
-
-De doelgroep moet ook concreet en duidelijk zijn, dus geen algemene of vaag gedefinieerde groepen zoals \emph{bedrijven}, \emph{developers}, \emph{Vlamingen}, enz. Je richt je in elk geval op it-professionals, een bachelorproef is geen populariserende tekst. Eén specifiek bedrijf (die te maken hebben met een concrete probleemsituatie) is dus beter dan \emph{bedrijven} in het algemeen.
-
-Formuleer duidelijk de onderzoeksvraag! De begeleiders lezen nog steeds te veel voorstellen waarin we geen onderzoeksvraag terugvinden.
-
-Schrijf ook iets over de doelstelling. Wat zie je als het concrete eindresultaat van je onderzoek, naast de uitgeschreven scriptie? Is het een proof-of-concept, een rapport met aanbevelingen, \ldots Met welk eindresultaat kan je je bachelorproef als een succes beschouwen?
-
-%---------- Stand van zaken ---------------------------------------------------
-
-\section{State-of-the-art}%
-\label{sec:state-of-the-art}
-
-Hier beschrijf je de \emph{state-of-the-art} rondom je gekozen onderzoeksdomein, d.w.z.\ een inleidende, doorlopende tekst over het onderzoeksdomein van je bachelorproef. Je steunt daarbij heel sterk op de professionele \emph{vakliteratuur}, en niet zozeer op populariserende teksten voor een breed publiek. Wat is de huidige stand van zaken in dit domein, en wat zijn nog eventuele open vragen (die misschien de aanleiding waren tot je onderzoeksvraag!)?
-
-Je mag de titel van deze sectie ook aanpassen (literatuurstudie, stand van zaken, enz.). Zijn er al gelijkaardige onderzoeken gevoerd? Wat concluderen ze? Wat is het verschil met jouw onderzoek?
-
-Verwijs bij elke introductie van een term of bewering over het domein naar de vakliteratuur, bijvoorbeeld~\autocite{Hykes2013}! Denk zeker goed na welke werken je refereert en waarom.
-
-Draag zorg voor correcte literatuurverwijzingen! Een bronvermelding hoort thuis \emph{binnen} de zin waar je je op die bron baseert, dus niet er buiten! Maak meteen een verwijzing als je gebruik maakt van een bron. Doe dit dus \emph{niet} aan het einde van een lange paragraaf. Baseer nooit teveel aansluitende tekst op eenzelfde bron.
-
-Als je informatie over bronnen verzamelt in JabRef, zorg er dan voor dat alle nodige info aanwezig is om de bron terug te vinden (zoals uitvoerig besproken in de lessen Research Methods).
-
-% Voor literatuurverwijzingen zijn er twee belangrijke commando's:
-% \autocite{KEY} => (Auteur, jaartal) Gebruik dit als de naam van de auteur
-%   geen onderdeel is van de zin.
-% \textcite{KEY} => Auteur (jaartal)  Gebruik dit als de auteursnaam wel een
-%   functie heeft in de zin (bv. ``Uit onderzoek door Doll & Hill (1954) bleek
-%   ...'')
-
-Je mag deze sectie nog verder onderverdelen in subsecties als dit de structuur van de tekst kan verduidelijken.
-
+In deze bachelorproef zal een PoC opgeleverd worden, gebruikmakend van React voor front-end en Node.js voor back-end. React is een Javascript user library die ontwikkeld is door Facebook en het wordt gebruikt voor het maken van user interfaces \autocite{Banks2017}. Node.js kan worden omschreven als een runtime omgeving voor Javascript gebouwd bovenop Google's V8 engine \autocite{Satheesh2015}.
 %---------- Methodologie ------------------------------------------------------
 \section{Methodologie}%
 \label{sec:methodologie}
 
-Hier beschrijf je hoe je van plan bent het onderzoek te voeren. Welke onderzoekstechniek ga je toepassen om elk van je onderzoeksvragen te beantwoorden? Gebruik je hiervoor literatuurstudie, interviews met belanghebbenden (bv.~voor requirements-analyse), experimenten, simulaties, vergelijkende studie, risico-analyse, PoC, \ldots?
-
-Valt je onderwerp onder één van de typische soorten bachelorproeven die besproken zijn in de lessen Research Methods (bv.\ vergelijkende studie of risico-analyse)? Zorg er dan ook voor dat we duidelijk de verschillende stappen terug vinden die we verwachten in dit soort onderzoek!
-
-Vermijd onderzoekstechnieken die geen objectieve, meetbare resultaten kunnen opleveren. Enquêtes, bijvoorbeeld, zijn voor een bachelorproef informatica meestal \textbf{niet geschikt}. De antwoorden zijn eerder meningen dan feiten en in de praktijk blijkt het ook bijzonder moeilijk om voldoende respondenten te vinden. Studenten die een enquête willen voeren, hebben meestal ook geen goede definitie van de populatie, waardoor ook niet kan aangetoond worden dat eventuele resultaten representatief zijn.
-
-Uit dit onderdeel moet duidelijk naar voor komen dat je bachelorproef ook technisch voldoen\-de diepgang zal bevatten. Het zou niet kloppen als een bachelorproef informatica ook door bv.\ een student marketing zou kunnen uitgevoerd worden.
-
-Je beschrijft ook al welke tools (hardware, software, diensten, \ldots) je denkt hiervoor te gebruiken of te ontwikkelen.
-
-Probeer ook een tijdschatting te maken. Hoe lang zal je met elke fase van je onderzoek bezig zijn en wat zijn de concrete \emph{deliverables} in elke fase?
+In de eerste fase van de bachelorproef zal onderzoek gedaan worden naar Three.js a.d.h.v. een online cursus genaamd "Three.js Journey", die een zeventigtal uren van lessen omvat. In het tweede deel van de bachelorproef zal een lege webshop voorzien worden, daarna wordt de webshop eenmaal gevuld met producten die op een conventionele manier geïntegreerd zijn en eenmaal met 3D objecten gebruikmakend van Three.js. Voor de webshops zal gewerkt worden met een volledig identieke maar onafhankelijke back-end waarbij de inhoud van de front-end exact hetzelfde is om een zo correct mogelijk vergelijkende studie te realiseren.
+ Na het uitvoeren van deze twee praktische onderzoeken zal een vergelijkende studie volgen tussen de twee webshops waarbij de UX metrics gebruikt worden als parameters. Hiervoor zal een steekproef door 10 of meer gebruikers afgenomen worden. De interacties van de participanten zullen worden geanalyseerd a.d.h.v. de UX metrics.
 
 %---------- Verwachte resultaten ----------------------------------------------
 \section{Verwacht resultaat, conclusie}%
 \label{sec:verwachte_resultaten}
 
-Hier beschrijf je welke resultaten je verwacht. Als je metingen en simulaties uitvoert, kan je hier al mock-ups maken van de grafieken samen met de verwachte conclusies. Benoem zeker al je assen en de onderdelen van de grafiek die je gaat gebruiken. Dit zorgt ervoor dat je concreet weet welk soort data je moet verzamelen en hoe je die moet meten.
-
-Wat heeft de doelgroep van je onderzoek aan het resultaat? Op welke manier zorgt jouw bachelorproef voor een meerwaarde?
-
-Hier beschrijf je wat je verwacht uit je onderzoek, met de motivatie waarom. Het is \textbf{niet} erg indien uit je onderzoek andere resultaten en conclusies vloeien dan dat je hier beschrijft: het is dan juist interessant om te onderzoeken waarom jouw hypothesen niet overeenkomen met de resultaten.
+Uit dit onderzoek moet duidelijk blijken of het implementeren van 3D interactie met behulp van Three.js een positieve invloed heeft op de user experience in e-commerce. 
 

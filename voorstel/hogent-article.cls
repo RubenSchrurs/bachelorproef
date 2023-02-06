@@ -232,9 +232,9 @@
 \RequirePackage{fontspec}     % Support for TTF fonts
 \RequirePackage{unicode-math}
 
-\newfontfamily\montserratblack{Montserrat}[BoldFont={Montserrat Black}]
-\newfontfamily\montserratextrabold{Montserrat}%
-    [BoldFont={Montserrat ExtraBold}]
+\newfontfamily\montserratblack{Montserrat}[BoldFont={Montserrat-Black}]
+\newfontfamily\montserratextrabold{Montserrat}% 
+	[BoldFont={Montserrat-ExtraBold}]
 
 \def\titlefont{\montserratblack\bfseries}
 \def\tocfont{\montserratblack}
