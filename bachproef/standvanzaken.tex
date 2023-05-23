@@ -7,14 +7,14 @@
 
 % Pas na deze inleidende paragraaf komt de eerste sectiehoofding.
 
-Dit onderzoek zal zich dus focussen op wat de voor- en nadelen zijn van het implementeren van 3D elementen in een webshop. Maar alvorens hieraan te beginnen zal eerst een kijk genomen worden naar wat React en Node.js zijn omdat deze een integraal deel uitmaken voor het opbouwen van de POC's. Nadien zal een grondig onderzoek gedaan worden naar Three.js en welke mogelijkheden dit framework ons kan aanbieden.
+Dit onderzoek zal zich dus focussen op wat de voor- en nadelen zijn van het implementeren van 3D elementen in een webshop. Maar alvorens hieraan te beginnen zal eerst een kijk genomen worden naar wat React en Node.js zijn omdat deze een integraal deel uitmaken voor het opbouwen van de POC's. Nadien zal een grondig onderzoek gedaan worden naar Three.js en welke mogelijkheden dit framework aan te bieden heeft.
 
 \section{React}
 
-React is een open-source front-end JavaScript library voor het bouwen van UI componenten. Het wordt onderhouden door Facebook en een gemeenschap van individuele developers en bedrijven \autocite{Bhupati2021}. Tegenwoordig behoort React tot een van de meest gebruikte frameworks voor developers om web applicaties te maken. Voor degenen die nog niet bekend zijn met React, zal er een korte introductie gegeven worden. Voor anderen dient dit hoofdstuk als een opfrissing van de belangrijkste kenmerken van React.
+React is een open-source front-end JavaScript bibliotheek voor het bouwen van UI componenten. Het wordt onderhouden door Facebook en een gemeenschap van individuele developers en bedrijven \autocite{Bhupati2021}. Tegenwoordig behoort React tot een van de meest gebruikte frameworks voor developers om web applicaties te maken. Voor degenen die nog niet bekend zijn met React, zal er een korte introductie gegeven worden. Voor anderen dient dit hoofdstuk als een opfrissing van de belangrijkste kenmerken van React.
 
 \subsection{Componenten}
-De sterkte van React stemt af van de focus op individuele componenten. Deze componenten kunnen developers gemakkelijk hergebruiken om hun web applicaties te ontwikkelen. Componenten zijn losstaande en herbruikbare stukjes code. Ze vervullen dezelfde functie als JavaScript-functies, maar werken geïsoleerd en geven HTML terug. Compenten komen voor in twee vormen, klasse componenten en functie componenten , de best-practice is momenteel om de functievorm te gebruiken. \autocite{W3Schools2023} Deze componenten kunnen ook genest worden, zo kunnen we componenten maken die gebruikt worden in meerdere web applicaties omdat deze los staan van de gehele applicatie.
+De sterkte van React stemt af van de focus op individuele componenten. Deze componenten kunnen developers gemakkelijk hergebruiken om web applicaties te ontwikkelen. Componenten zijn losstaande en herbruikbare stukjes code. Ze vervullen dezelfde functie als JavaScript-functies maar werken geïsoleerd en geven HTML terug. Compenten komen voor in twee vormen, klasse componenten en functie componenten , de best-practice is momenteel om de functievorm te gebruiken. \autocite{W3Schools2023} Deze componenten kunnen ook genest worden, zo kunnen we componenten maken die gebruikt worden in meerdere web applicaties omdat ze los staan van de gehele applicatie.
 
 \subsection{Props}
 Componenten zijn dus een krachtige tool, maar wat als je een component nodig hebt waarbij bepaalde variabelen kunnen veranderen, zoals een afbeelding of een stuk tekst? Hier komen props in het verhaal terecht. Net zoals je bij een afbeelding de "src" meegeeft kan je bij React-componenten ook aangepaste props meegeven. Dit kan men doen door in de component-tag een waarde toe te kennen aan de prop en deze vervolgens te destructuren in de parameters van de component \autocite{NextJS2023}. Op deze manier kunnen developers op een eenvoudige manier gegevens tussen componenten doorgeven.
@@ -346,6 +346,47 @@ Op elke frame voor de render is uitgevoerd zal deze wereld een update krijgen en
 
 \subsection{React Three Fiber}
 
-React Three Fiber is een bibliotheek die Three.js en React combineert. 
+React Three Fiber is een bibliotheek die Three.js en React combineert zonder limieten, alles dat werkt in Three.js kan dus ook werken a.d.h.v. R3F. De manier hoe het werkt is dat Three.js vertaald wordt naar JSX, <mesh /> zal automatisch veranderen in new THREE.Mesh() \autocite{reactThreeFiber2023}.
 
-\subsubsection{title}
+\subsubsection{Canvas}
+
+Via het Canvas object geeft R3F toegang tot de Three.js bibliotheek door een scene en renderer aan te maken. Binnen in het Canvas object kunnen dan alle andere delen geplaatst worden om een volledige ervaring te maken. In volgend voorbeeld word een Canvas object gebruikt in een React omgeving \autocite{reactThreeFiber2023}.
+
+\begin{LVerbatim}
+<Canvas camera={{ position: [0, 0, 25] }} >
+	<mesh/>
+</Canvas>
+\end{LVerbatim}
+
+Bij dit object kan dus ook een camera positie meegegeven worden maar ook andere props die te vinden zijn in de documentatie van R3F
+
+\subsubsection{Objecten}
+
+Een logische reactie zou zijn om als volgt props mee te geven aan een object:
+
+\begin{LVerbatim}
+<mesh
+	position={new THREE.Vector3(2, 5, 8)}
+	geometry={new THREE.BoxGeometry(10, 10, 10)}
+	material={new THREE.MeshStandardMaterial({ color: new THREE.Color('red')})}
+/>
+\end{LVerbatim}
+
+Het probleem met deze manier van werken is dat all deze props opnieuw aangemaakt zullen worden door R3F. De correcte manier in R3F om props mee te geven aan een object is dus als volgt:
+
+\begin{LVerbatim}
+<mesh position={[2, 5, 8]}>
+	<boxGeometry args={[10, 10, 10]} />
+	<meshStandardMaterial color="red" />
+</mesh>
+\end{LVerbatim}
+
+Merk ook op dat de constructor argumenten voor het aanmaken van de BoxGeometry meegegeven worden in een 'args' prop. Voor alle argument van een object waar een set() methode kan op uitgevoerd worden kan dit wel als prop meegegeven worden bij de initializatie zoals de positie of kleur \autocite{reactThreeFiber2023}.
+
+\subsubsection{Hooks}
+
+De belangrijkste hook voor R3F is useThree(), deze hook geeft een developer toegang tot de state die de renderer, scene en camera bevat alsook de grootte van het canvas in scherm en viewport coördinaten. Deze hook kan echter niet aangeropen worden buiten de context van het Canvas object.
+
+De volgende hook in de lijst is useFrame() waar de state en een klok delta uit gehaald kan worden. Binnenin de hook kan op elke frame een stuk code uitgevoerd worden net voor de frame is gerendered. Hier moet dus extra aandacht gehecht worden aan welk soort code geschreven wordt om eventuele loops te vermijden want dit kan een zeer zware impact hebben op de GPU.
+
+De useLoader() hook gebruikt R3F voor het inladen van bepaalde textures, fonts of modellen a.d.h.v. een TextureLoader, FontLoader, GLTFLoader of OBJLoader.
