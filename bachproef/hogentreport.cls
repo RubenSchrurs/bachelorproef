@@ -337,8 +337,7 @@
         not running XeLaTeX/LuaLaTeX: using native fonts}
 
     \RequirePackage[defaultfam,tabular,lining]{montserrat}
-    \RequirePackage{firamath}
-    \RequirePackage{sfmath} % Fallback sans serif math font
+
 
     \RequirePackage[T1]{fontenc}
     \renewcommand*\oldstylenums[1]{{\fontfamily{Montserrat-TOsF}\selectfont #1}}
@@ -351,9 +350,9 @@
     %% Using fontspec for font rendering, first check system paths
     %% for font availability, if not fall back to local .otf files
     \IfFontExistsTF{Montserrat}{%
-        \newfontfamily\montserratblack{Montserrat}[BoldFont={Montserrat Black}]
+        \newfontfamily\montserratblack{Montserrat}[BoldFont={Montserrat-Black}]
         \newfontfamily\montserratextrabold{Montserrat}%
-            [BoldFont={Montserrat ExtraBold}]
+            [BoldFont={Montserrat-ExtraBold}]
 
         \def\titlefont{\montserratblack\bfseries}
         \def\subtitlefont{\montserratextrabold\bfseries}
@@ -419,8 +418,8 @@
 
     % Use a unicode-compliant sans serif math font
     \IfFontExistsTF{Fira Math Regular}{%
-        \setmathfont{Fira Math Regular}[BoldFont=Fira Math Bold]
-        \setmathfont{Fira Math Regular}[FakeSlant, range={bfit->it}]
+        \setmathfont{FiraMath-Regular}[BoldFont=FiraMath-Bold]
+        \setmathfont{FiraMath-Regular}[FakeSlant, range={bfit->it}]
     }{%
         \setmathfont{FiraMath-Regular.otf}[
             Path = fonts/FiraMath/,
@@ -437,7 +436,7 @@
 
 %% Use the length of the 'HO' part of the logo to set the padding of the logo
 \newsavebox{\logopart}
-\savebox{\logopart}{\includegraphics[height=2cm]{graphics/logopart}}
+%\savebox{\logopart}{\includegraphics[height=2cm]{graphics/logopart}}
 
 %% We use A4 paper with slightly smaller margins than the default (scale = 0.7)
 \geometry{a4paper,hscale=0.75,vscale=0.8,headheight=14pt,asymmetric}
