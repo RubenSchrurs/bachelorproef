@@ -115,7 +115,7 @@ Bij het aanmaken van een camera zijn opnieuw twee vereisten: de 'field of view' 
 
 Het gezichtsveld is de grootte van de hoek waarmee gekeken wordt, is de hoek groot dan zal alles vervormd worden op een manier dat het uitgezoomd lijkt. Als de hoek echter klein is dan lijkt het alsof er ingezoomd word. Een standaard waarde voor het gezichtsveld of 'FOV' is 75 graden en correspondeert met de verticale hoek.
 
-De beeldverhouding wordt in de meeste gevallen bepaald door de breedte te delen door de hoogte. In volgend voorbeeld wordt getoond hoe een simpele PerspectiveCamera in de scene geplaatst wordt \autocite{Simon2023}.
+De beeldverhouding wordt in de meeste gevallen bepaald door de breedte te delen door de hoogte. In volgend voorbeeld wordt getoond hoe een simpele \texttt{PerspectiveCamera} in de scene geplaatst wordt \autocite{Simon2023}.
 
 \begin{LVerbatim}
 const maten = {
@@ -161,9 +161,9 @@ Met transformaties kunnen bewerkingen uitgevoerd worden op de meshes die zich be
 	\item kwaternion
 \end{itemize}
 
-Deze opties spreken voor zichzelf, de positie bepaald waar de mesh zich bevind in de scene a.d.h.v. de x, y en z eigenschappen. Hiervoor gebruikt Three.js een Vector3 klasse, de positie is dus een instantie van de Vector3 klasse, zo is er ook de Vector2 klasse maar deze is minder voorkomend.
+Deze opties spreken voor zichzelf, de positie bepaald waar de mesh zich bevind in de scene a.d.h.v. de x, y en z eigenschappen. Hiervoor gebruikt Three.js een \texttt{Vector3} klasse, de positie is dus een instantie van de \texttt{Vector3} klasse, zo is er ook de \texttt{Vector2} klasse maar deze is minder voorkomend.
 
-De schaal is ook een instantie van de Vector3 klasse en heeft dus ook x, y en z eigenschappen.
+De schaal is ook een instantie van de \texttt{Vector3} klasse en heeft dus ook x, y en z eigenschappen.
 
 De rotatie van een mesh is een instantie van Euler i.p.v. Vector3 maar heeft ook x, y en z eigenschappen. Euler is een veel gebruikte manier van rotaties noteren in drie-dimensionale omgevingen, als men bijvoorbeeld de mesh 180 graden wil draaien op de x-as kan dat door Math.PI mee te geven aan de x-eigenschap van de rotatie.
 
@@ -171,9 +171,9 @@ Een kwaternion kan ook gebruikt worden om de rotatie van de mesh te bepalen maar
 
 \subsubsection{Animaties}
 
-Animaties zijn de strekte van Three.js, kort uitgelegd zijn animaties een transformatie uit voeren op een of meerder modellen en dan opnieuw een render uitvoeren. Stel dat een kubus zich bevindt op plaats (0, 0, 0) op de initiële render, wanneer de kubus een nieuwe positie krijgt bijvoorbeeld (5, 0, 0) zal de volgende render de kubus zich daar bevinden. 
+Animaties zijn de strekte van Three.js, kort uitgelegd zijn animaties een transformatie uit voeren op een of meerder modellen en dan opnieuw een render uitvoeren. Stel dat een kubus zich bevindt op plaats \texttt{(0, 0, 0)} op de initiële render, wanneer de kubus een nieuwe positie krijgt bijvoorbeeld \texttt{(5, 0, 0)} zal de volgende render de kubus zich daar bevinden. 
 
-Om de animaties er beter te laten uitzien heeft Three.js een oplossing ter beschikking. De klok maakt het gemakkelijk voor developers om goede animaties te maken omdat deze rekening houdt met de tijd die verstreken is. De native Javascript methode gebruikt de framerate van de gebruiker maar omdat dit kan verschillen zal geopteerd worden voor de klok.
+Om de animaties er beter te laten uitzien heeft Three.js een oplossing ter beschikking. De klok maakt het gemakkelijk voor developers om goede animaties te maken omdat deze rekening houdt met de tijd die verstreken is. De native Javascript methode gebruikt de framerate van de gebruiker maar omdat dit kan verschillen zal geopteerd worden voor de klok \autocite{Simon2023}.
 
 De klok kan als volgt gebruikt worden:
 
@@ -191,7 +191,7 @@ const tick = () =>
 tick()
 \end{LVerbatim}
 
-Met de getElapsedTime() methode kan de tijd die verstreken is gevraagd worden en zal de kubus op basis van deze tijd veranderen van positie. 
+Met de \texttt{getElapsedTime()} methode kan de tijd die verstreken is gevraagd worden en zal de kubus op basis van deze tijd veranderen van positie. 
 
 \subsubsection{Soorten camera's}
 
@@ -199,7 +199,7 @@ Three.js biedt een hoop camera's aan, in dit stuk worden de voornaamste vermeld.
 
 De meeste gebruikte camera is de perspectief camera \ref{fig:perspectiefCamera}, die al eerder vermeld is, hiervoor is een gezichtsveld waarde nodig en een beeldverhouding waarde. De naam van de camera is vanzelfsprekend, wanneer deze gebruikt wordt dan zal de scene vanuit een perspectief bekeken worden. Dat wil zeggen dat het bekeken wordt vanaf 1 punt en waar dat punt is zal bepalen hoe de scene gerendered word.
 
-De orthografische camera \ref{fig:orthografischeCamera} is nog een mogelijkheid, deze camera zal objecten renderen zodat de afstand van het object tot de camera geen invloed heeft op de grootte. Dit kan handig zijn voor 2D scenes of UI elementen te renderen \autocite{threejs2023}.
+De orthografische camera \ref{fig:orthografischeCamera} is een andere mogelijkheid, deze camera zal objecten renderen zodat de afstand van het object tot de camera geen invloed heeft op de grootte. Dit kan handig zijn voor 2D scenes of UI elementen te renderen \autocite{threejs2023}.
 
 \begin{figure}
 	\centering
@@ -217,9 +217,9 @@ De orthografische camera \ref{fig:orthografischeCamera} is nog een mogelijkheid,
 \newpage
 \subsubsection{Soorten geometriën}
 
-De bibliotheek van Three.js heeft een veel basis geometriën waar developers gemakkelijk van gebruik kunnen maken. Tijdens het schrijven van deze scriptie zijn er 18 beschikbaar waaronder de BoxGeometry \ref{fig:boxGeometry}, PlaneGeometry, SphereGeometry, TextGeometry en nog meer.
+De bibliotheek van Three.js heeft een veel basis geometriën waar developers gemakkelijk van gebruik kunnen maken. Tijdens het schrijven van deze scriptie zijn er 18 beschikbaar waaronder de \texttt{BoxGeometry} \ref{fig:boxGeometry}, \texttt{PlaneGeometry} \ref{fig:planeGeometry}, \texttt{SphereGeometry} \ref{fig:sphereGeometry}, \texttt{TextGeometry} en nog meer.
 
-Een geometrie in Three.js bestaat uit vertices en vlakken. Elke geometrie heeft in essentie een hoop driehoeken met 3 vertices of hoekpunten en een vlak. Wanneer deze driehoeken gecombineerd worden geeft het als resultaat een geometrie. Hiermee kan Three.js zeer complexe maar ook zeer simpele vormen representeren. Als voorbeeld kan een vlak genomen worden of in Three.js genaamd een PlaneGeometry \ref{fig:planeGeometry}, een vlak bestaat uit twee driehoeken en heeft dus 6 vertices. Een stap hoger is dan de BoxGeometry \ref{fig:boxGeometry} die 6 vlakken omvat en dus uit 12 driehoeken of 36 vertices bestaat. Nog een paar stappen hoger en dan kan een SphereGeometry \ref{fig:sphereGeometry} gemaakt worden, deze vorm is een stuk complexer want het lijkt alsof het een bol is maar in realiteit bestaat de bol uit een hoop vlakken en heeft dus veel meer driehoeken nodig om gerealiseerd te worden \autocite{threejs2023}.
+Een geometrie in Three.js bestaat uit vertices en vlakken. Elke geometrie heeft in essentie een hoop driehoeken met 3 vertices of hoekpunten en een vlak. Wanneer deze driehoeken gecombineerd worden geeft het als resultaat een geometrie. Hiermee kan Three.js zeer complexe maar ook zeer simpele vormen representeren. Als voorbeeld kan een vlak genomen worden of in Three.js genaamd een \texttt{PlaneGeometry} \ref{fig:planeGeometry}, een vlak bestaat uit twee driehoeken en heeft dus 6 vertices. Een stap hoger is dan de \texttt{BoxGeometry} \ref{fig:boxGeometry} die 6 vlakken omvat en dus uit 12 driehoeken of 36 vertices bestaat. Nog een paar stappen hoger en dan kan een \texttt{SphereGeometry} \ref{fig:sphereGeometry} gemaakt worden, deze vorm is een stuk complexer want het lijkt alsof het een bol is maar in realiteit bestaat de bol uit een hoop vlakken en heeft dus veel meer driehoeken nodig om gerealiseerd te worden \autocite{threejs2023}.
 
 Hoe meer driehoeken er gebruikt worden hoe meer detail de developer dus kan implementeren maar dit brengt een prijs met zich mee. Elke vertex heeft een coördinaat en moet gerendered worden, wanneer er animaties gebeuren in de scene en de developer is iets te enthousiast geweest dan kan al zeer snel een vertaging zijn. Zeker als we weten dat er nog veel computers zijn waar de GPU nog niet optimaal is, bijvoorbeeld op gsm's. Wanneer men dus met animaties werkt is het vaak een vuistregel om zo weinig mogelijk driehoeken te gebruiken voor de geometriën. Zo kan de beste omgeving voorzien worden om elke gebruiker de optimale ervaring te geven.
 
@@ -252,9 +252,9 @@ Texturen zijn afbeeldingen die over de vlakken van een geometrie gelegd worden. 
 \item Ruwheid
 \end{itemize}
 
-Deze texturen bieden de mogelijkheid aan om een geometrie een realistisch uitzicht te geven. Met de kleur textuur zal elke pixel van de afbeelding geplakt worden op de geometrie. De alfa textuur is een grijstint afbeelding waar wit het zichtbare voorstelt en zwart hetgeen wat niet zichtbaar is voorstelt. De hoogte textuur is ook een grijstint afbeelding die a.d.h.v. de tinten een reliëf creëert in de geometrie. Hierbij zullen de vertices van plaats veranderd worden om dit effect te verwezenlijken. De normaal textuur voegt kleine details toe aan de geometrie en doet dit door het licht zodanig te manipuleren dat het denkt dat bepaalde vlakken of driehoeken anders georiënteerd zijn. De omgevingsocclusie textuur is opnieuw een grijstint afbeelding die valse schaduwen zal plakken in de gleuven van de geometrie, alhoewel dit niet echt is zorgt het voor een beter contrast. Met de metaaheid textuur, dat ook een grijstint afbeelding is, zullen de stukken van de geometrie die metaal zijn in het wit voorgesteld worden. Met deze info maakt Three.js deze delen van de geometrie meer reflectief. En dan is er tenslotte de ruwheid textuur die grijstinten gebruikt om op dezelfde manier als de metaalheid textuur delen van de geometrie een ruwheid te geven \autocite{Simon2023}.
+Deze texturen bieden de mogelijkheid aan om een geometrie een realistisch uitzicht te geven. Met de kleur textuur \ref{fig:colorTexture} zal elke pixel van de afbeelding geplakt worden op de geometrie. De alfa textuur \ref{fig:alphaTexture} is een grijstint afbeelding waar wit het zichtbare voorstelt en zwart hetgeen wat niet zichtbaar is voorstelt. De hoogte textuur \ref{fig:heightTexture} is ook een grijstint afbeelding die a.d.h.v. de tinten een reliëf creëert in de geometrie. Hierbij zullen de vertices van plaats veranderd worden om dit effect te verwezenlijken. De normaal textuur \ref{fig:normalTexture} voegt kleine details toe aan de geometrie en doet dit door het licht zodanig te manipuleren dat het denkt dat bepaalde vlakken of driehoeken anders georiënteerd zijn. De omgevingsocclusie textuur \ref{fig:ambientOcclusionTexture} is opnieuw een grijstint afbeelding die valse schaduwen zal plakken in de gleuven van de geometrie, alhoewel dit niet echt is zorgt het voor een beter contrast. Met de metaaheid textuur \ref{fig:metalnessTexture}, dat ook een grijstint afbeelding is, zullen de stukken van de geometrie die metaal zijn in het wit voorgesteld worden. Met deze info maakt Three.js deze delen van de geometrie meer reflectief. En dan is er tenslotte de ruwheid textuur \ref{fig:roughnessTexture} die grijstinten gebruikt om op dezelfde manier als de metaalheid textuur delen van de geometrie een ruwheid te geven \autocite{Simon2023}.
 
-Omdat texturen eigenlijk afbeeldingen zijn worden ze met normale Javascript code ingeladen. Ze worden in Three.js als volgt gedefinieerd:
+Omdat texturen eigenlijk afbeeldingen zijn worden ze met normale Javascript code ingeladen om dan in Three.js als volgt gedefinieerd te worden:
 
 \begin{LVerbatim}
 const textuur = new THREE.Texture(afbeelding)
@@ -262,40 +262,48 @@ const textuur = new THREE.Texture(afbeelding)
 
 \begin{figure}
 	\centering
-	\includegraphics[width=1\linewidth]{graphics/}
-	\caption[]{}
-	\label{fig:1}
+	\includegraphics[width=.5\linewidth]{graphics/colorTexture}
+	\caption[Kleur textuur afbeelding]{Kleur textuur afbeelding}
+	\label{fig:colorTexture}
 \end{figure}
 \begin{figure}
 	\centering
-	\includegraphics[width=1\linewidth]{graphics/}
-	\caption[]{}
-	\label{fig:2}
+	\includegraphics[width=.5\linewidth]{graphics/alphaTexture}
+	\caption[Alfa textuur]{Alfa textuur}
+	\label{fig:alphaTexture}
 \end{figure}
 \begin{figure}
 	\centering
-	\includegraphics[width=1\linewidth]{graphics/}
-	\caption[]{}
-	\label{fig:3}
+	\includegraphics[width=.5\linewidth]{graphics/heightTexture}
+	\caption[Hoogte textuur]{Hoogte textuur}
+	\label{fig:heightTexture}
 \end{figure}
 \begin{figure}
 	\centering
-	\includegraphics[width=1\linewidth]{graphics/}
-	\caption[]{}
-	\label{fig:4}
+	\includegraphics[width=.5\linewidth]{graphics/normalTexture}
+	\caption[Normaal textuur]{Normaal textuur}
+	\label{fig:normalTexture}
 \end{figure}
 \begin{figure}
 	\centering
-	\includegraphics[width=1\linewidth]{graphics/}
-	\caption[]{}
-	\label{fig:5}
+	\includegraphics[width=.5\linewidth]{graphics/ambientOcclusionTexture}
+	\caption[OmgevingsOcclusie textuur]{OmgevingsOcclusie textuur}
+	\label{fig:ambientOcclusionTexture}
 \end{figure}
 \begin{figure}
 	\centering
-	\includegraphics[width=1\linewidth]{graphics/}
-	\caption[]{}
-	\label{fig:6}
+	\includegraphics[width=.5\linewidth]{graphics/metalnessTexture}
+	\caption[Metaalheid textuur]{Metaalheid textuur}
+	\label{fig:metalnessTexture}
 \end{figure}
+\begin{figure}
+	\centering
+	\includegraphics[width=.5\linewidth]{graphics/roughnessTexture}
+	\caption[Ruwheid textuur]{Ruwheid textuur}
+	\label{fig:roughnessTexture}
+\end{figure}
+
+\newpage
 \subsubsection{Materialen}
 
 Materialen worden in Three.js gebruikt om een kleur te voorzien voor elke zichtbare pixel van een geometrie. De algoritmes die bepalen welke pixel welke kleur krijgt zijn geschreven in specifieke 'shader' programma's. Shaders schrijven is een uiterst complex gegeven en is dus zeker niet voor iedereen weggelegd maar gelukkig biedt Three.js materialen aan met ingebouwde shaders \autocite{Simon2023}.
@@ -346,25 +354,32 @@ Met licht kan in een scene een compleet ander perspectief gegeven worden aan mes
 	\item SpotLight
 \end{itemize}
 
-Omdat AmbientLight of omgevingslicht en DirectionalLight of directioneel licht de voornaamste zijn die gebruikt worden binnen Three.js zullen deze uitgediept worden. Uitleg over de andere soorten licht is te vinden op de documentatie van Three.js.
+Omdat \texttt{AmbientLight} of omgevingslicht en \texttt{DirectionalLight} of directioneel licht de voornaamste zijn die gebruikt worden binnen Three.js zullen deze uitgediept worden. Uitleg over de andere soorten licht is te vinden op de documentatie van Three.js.
 
-Belangrijk is dat materialen verschillend kunnen reageren op licht, het MeshBasicMaterial bijvoorbeeld is niet beïnvloed door licht. Er moet dus een andere soort materiaal gebruikt worden, hiervoor kan MeshStandardMaterial op de mesh toegepast worden. Bij dit materiaal is het aangeraden om een licht te gebruiken want indien dat niet het geval is zal de mesh ook niet zichtbaar zijn \autocite{Simon2023}.
+Belangrijk is dat materialen verschillend kunnen reageren op licht, het \texttt{MeshBasicMaterial} bijvoorbeeld is niet beïnvloed door licht. Er moet dus een andere soort materiaal gebruikt worden, hiervoor kan \texttt{MeshStandardMaterial} op de mesh toegepast worden. Bij dit materiaal is het noodzakelijk om een licht te gebruiken want indien er geen licht aanwezig is in de scene, dan zal de mesh ook niet zichtbaar zijn \autocite{Simon2023}.
 
 \subsubsection{AmbientLight}
 
 AmbientLight of omgevingslicht geeft omnidirectioneel licht op alle meshes die zich in de scene bevinden. Het initialiseren van dit licht vergt twee parameters zijnde de kleur en intensiteit.
 
 \begin{LVerbatim}
-const omgevingslicht = new THREE.AmbientLight(0x00ff00, 0.5)
+const omgevingslicht = new THREE.AmbientLight(0xffffff, 0.5)
 scene.add(omgevingslicht)
 \end{LVerbatim}
 
+\begin{figure}
+	\centering
+	\includegraphics[width=1\linewidth]{graphics/ambientLight}
+	\caption[Omgevingslicht voorbeeld van BoxGeometry en PlaneGeometry]{Omgevingslicht voorbeeld van BoxGeometry en PlaneGeometry}
+	\label{fig:ambientLight}
+\end{figure}
+
 \subsubsection{DirectionalLight}
 
-DirectionalLight of directioneel licht kan je vergelijken met zonlicht, alle stralen komen parallel vanuit dezelfde richting maar geen specifiek punt. Hierbij kan je de positie aanpassen net zoals de positie van de zon ook kan veranderen, bij initialisatie wordt ook de kleur en intensiteit meegegeven.
+\texttt{DirectionalLight} of directioneel licht \ref{directionalLight} kan je vergelijken met zonlicht, alle stralen komen parallel vanuit dezelfde richting maar geen specifiek punt. Hierbij kan je de positie aanpassen net zoals de positie van de zon ook kan veranderen, bij initialisatie wordt ook de kleur en intensiteit meegegeven.
 
 \begin{LVerbatim}
-const directioneelLicht = new THREE.DirectionalLight(0xff0000, 0.4)
+const directioneelLicht = new THREE.DirectionalLight(0x00fffc, 0.4)
 scene.add(directioneelLicht)
 \end{LVerbatim}
 
@@ -374,11 +389,32 @@ De positie kan op de volgende simpele manier na initialisatie veranderd worden.
 directioneelLicht.position.set(1, .5, 0)
 \end{LVerbatim}
 
-Lichten kunnen ook gecombineerd worden om een realistisch beeld te verkrijgen  \autocite{Simon2023}.
+Lichten kunnen ook gecombineerd worden om een realistisch beeld te verkrijgen, zie Figuur  \ref{fig:ambientPlusDirectionalLight}  \autocite{Simon2023}.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=1\linewidth]{graphics/directionalLight}
+	\caption[Directioneel licht voorbeeld van BoxGeometry en PlaneGeometry]{Directioneel licht voorbeeld van BoxGeometry en PlaneGeometry}
+	\label{fig:directionalLight}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=1\linewidth]{graphics/ambientPlusDirectionalLight}
+	\caption[Voorbeeld omgevingslicht plus directioneel licht van BoxGeometry en PlaneGeometry]{Voorbeeld omgevingslicht plus directioneel licht van BoxGeometry en PlaneGeometry}
+	\label{fig:ambientPlusDirectionalLight}
+\end{figure}
 
 \subsubsection{Helpers}
 
-Omdat het soms moeilijk kan zijn om een goed beeld te krijgen over waar een licht staat in de scene is het handig om een helper te gebruiken. Deze zal als een hulplijn dienen om de gewenste positie en dus resultaat te verkrijgen.
+Omdat het soms moeilijk kan zijn om een goed beeld te krijgen over waar een licht staat in de scene is het handig om een helper te gebruiken. Deze zal als een hulplijn dienen om de gewenste positie en dus resultaat te verkrijgen. Zie figuur \ref{fig:directionalLightHelper} voor een voorbeeld.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=1\linewidth]{graphics/directionalLightHelper}
+	\caption[Voorbeeld omgevingslicht plus directioneel licht van BoxGeometry en PlaneGeometry met helper]{Voorbeeld omgevingslicht plus directioneel licht van BoxGeometry en PlaneGeometry met helper}
+	\label{fig:directionalLightHelper}
+\end{figure}
 
 \subsubsection{Schaduwen}
 
@@ -386,7 +422,7 @@ Met de inbreng van licht krijgen we uiteraard ook schaduwen, de achterkant van d
 
 De keerzijde van het implementeren van schaduwen is dat ze moeilijk te verkrijgen zijn aan een frame rate die goed is. Developers zullen dus creatieve oplossingen moeten vinden om een degelijke frame rate te verkrijgen \autocite{Simon2023}.
 
-Er zijn drie soorten lichten die het gebruik van schaduwen mogelijk maken, deze zijn DirectionalLight, PointLight en SpotLight. In deze scriptie zal alleen DirectionalLight behandeld worden.
+Er zijn drie soorten lichten die het gebruik van schaduwen mogelijk maken, deze zijn \texttt{DirectionalLight}, \texttt{PointLight} en \texttt{SpotLight}. In deze scriptie zal alleen \texttt{DirectionalLight} behandeld worden.
 
 De schaduwen moeten eerst als volgt aangezet worden:
 
@@ -403,6 +439,8 @@ mesh.receiveShadow = true
 directioneelLicht.castShadow = true
 \end{LVerbatim}
 
+Zie figuur \ref{fig:shadow} voor een voorbeeld van het schaduw effect.
+
 Voor performantie is de standaard waarde voor de schaduw map 512x512, voor meer gedetailleerde schaduwen kan de schaduw map grootte verhoogd worden met een macht van twee.
 
 \begin{LVerbatim}
@@ -412,6 +450,13 @@ directioneelLicht.shadow.mapSize.height = 1024
 
 Over schaduwen kan nog veel meer gezegd worden. Zo kan men bijvoorbeeld i.p.v. de schaduw te genereren een versie 'bakken' in een afbeelding en de op de mesh plakken, maar dit is al een stuk geavanceerder \autocite{Simon2023}.
 
+\begin{figure}
+	\centering
+	\includegraphics[width=1\linewidth]{graphics/shadow}
+	\caption[Voorbeeld omgevingslicht plus directioneel licht van BoxGeometry en PlaneGeometry met schaduw]{Voorbeeld omgevingslicht plus directioneel licht van BoxGeometry en PlaneGeometry met schaduw}
+	\label{fig:shadow}
+\end{figure}
+
 \subsubsection{Fysica}
 
 Fysica implementeren in een scene kan veel interactie geven aan de gebruiker. Zwaartekracht krijgt hier de hoofdrol en zal botsingen tussen de meshes veroorzaken. Dit gebeurd echter niet in een normale scene maar in een aparte wereld waar de krachten gesimuleerd worden. Deze wereld is puur theoretisch en kan niet gezien worden. Wanneer er een mesh wordt aangemaakt zal dezelfde versie van de mesh geïnitialiseerd worden in de natuurkundige wereld.
@@ -419,11 +464,11 @@ Op elke frame voor de render is uitgevoerd zal deze wereld een update krijgen en
 
 \subsection{React Three Fiber}
 
-React Three Fiber is een bibliotheek die Three.js en React combineert zonder limieten, alles dat werkt in Three.js kan dus ook werken a.d.h.v. R3F. De manier hoe het werkt is dat Three.js vertaald wordt naar JSX, <mesh /> zal automatisch veranderen in new THREE.Mesh() \autocite{reactThreeFiber2023}.
+React Three Fiber is een bibliotheek die Three.js en React combineert zonder limieten, alles dat werkt in Three.js kan dus ook werken a.d.h.v. R3F. De manier hoe het werkt is dat Three.js vertaald wordt naar JSX, \texttt{<mesh />} zal automatisch veranderen in \texttt{new THREE.Mesh()} \autocite{reactThreeFiber2023}.
 
 \subsubsection{Canvas}
 
-Via het Canvas object geeft R3F toegang tot de Three.js bibliotheek door een scene en renderer aan te maken. Binnen in het Canvas object kunnen dan alle andere delen geplaatst worden om een volledige ervaring te maken. In volgend voorbeeld word een Canvas object gebruikt in een React omgeving \autocite{reactThreeFiber2023}.
+Via het \texttt{Canvas} object geeft R3F toegang tot de Three.js bibliotheek door een scene en renderer aan te maken. Binnen in het  \texttt{Canvas} object kunnen dan alle andere delen geplaatst worden om een volledige ervaring te maken. In volgend voorbeeld word een  \texttt{Canvas} object gebruikt in een React omgeving \autocite{reactThreeFiber2023}.
 
 \begin{LVerbatim}
 <Canvas camera={{ position: [0, 0, 25] }} >
@@ -454,12 +499,12 @@ Het probleem met deze manier van werken is dat all deze props opnieuw aangemaakt
 </mesh>
 \end{LVerbatim}
 
-Merk ook op dat de constructor argumenten voor het aanmaken van de BoxGeometry meegegeven worden in een 'args' prop. Voor alle argument van een object waar een set() methode kan op uitgevoerd worden kan dit wel als prop meegegeven worden bij de initializatie zoals de positie of kleur \autocite{reactThreeFiber2023}.
+Merk ook op dat de constructor argumenten voor het aanmaken van de \texttt{BoxGeometry} meegegeven worden in een 'args' prop. Voor alle argument van een object waar een \texttt{set()} methode kan op uitgevoerd worden kan dit wel als prop meegegeven worden bij de initializatie zoals de positie of kleur \autocite{reactThreeFiber2023}.
 
 \subsubsection{Hooks}
 
-De belangrijkste hook voor R3F is useThree(), deze hook geeft een developer toegang tot de state die de renderer, scene en camera bevat alsook de grootte van het canvas in scherm en viewport coördinaten. Deze hook kan echter niet aangeropen worden buiten de context van het Canvas object.
+De belangrijkste hook voor R3F is \texttt{useThree()}, deze hook geeft een developer toegang tot de state die de renderer, scene en camera bevat alsook de grootte van het canvas in scherm en viewport coördinaten. Deze hook kan echter niet aangeropen worden buiten de context van het \texttt{Canvas} object.
 
-De volgende hook in de lijst is useFrame() waar de state en een klok delta uit gehaald kan worden. Binnenin de hook kan op elke frame een stuk code uitgevoerd worden net voor de frame is gerendered. Hier moet dus extra aandacht gehecht worden aan welk soort code geschreven wordt om eventuele loops te vermijden want dit kan een zeer zware impact hebben op de GPU.
+De volgende hook in de lijst is \texttt{useFrame()} waar de state en een klok delta uit gehaald kan worden. Binnenin de hook kan op elke frame een stuk code uitgevoerd worden net voor de frame is gerendered. Hier moet dus extra aandacht gehecht worden aan welk soort code geschreven wordt om eventuele loops te vermijden want dit kan een zeer zware impact hebben op de GPU.
 
-De useLoader() hook gebruikt R3F voor het inladen van bepaalde textures, fonts of modellen a.d.h.v. een TextureLoader, FontLoader, GLTFLoader of OBJLoader.
+De \texttt{useLoader()} hook gebruikt R3F voor het inladen van bepaalde textures, fonts of modellen a.d.h.v. een \texttt{TextureLoader}, \texttt{FontLoader}, \texttt{GLTFLoader} of \texttt{OBJLoader}.
