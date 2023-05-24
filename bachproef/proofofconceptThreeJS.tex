@@ -248,6 +248,20 @@ useFrame((state, delta) => {
 
 In deze useFrame wordt voor elke lijn van de minimap een \texttt{y} variabele gemaakt op basis van het aantal lijnen en de plaats van de individuele lijn. Vervolgens gebruiken we deze om de schaal van de lijn aan te passen met de \texttt{damp()} functie. Deze transformaties zorgen ervoor dat een golf effect over de lijnen wordt geplaatst wanneer de gebruiker scrollt, zie fig. \ref{fig:minimap}.
 
-\subsubsection{Hindernissen en uitdagingen}
+\subsection{Hindernissen en uitdagingen}
 
-Het originele idee was om een platenhoes en vinyl plaat in 3D te modelleren en deze dan te importeren in de scene. Dit bleek echter zeer tijdrovend zeker voor een beginner in 3D modelleren. Alhoewel het gelukt is om een platenhoes te modelleren was dat niet het geval voor het plaatsen van een afbeelding op het 3D model. Een van de redenen was omdat het model over meerdere vlakken beschikte, na veel zoeken is dan uiteindelijk gekozen voor een \texttt{PlaneGeometry}.
+Het originele idee was om een platenhoes en vinyl plaat in 3D te modelleren en deze dan te importeren in de scene. Dit bleek echter zeer tijdrovend zeker voor een beginner in 3D modelleren. Alhoewel het gelukt is om een platenhoes te modelleren was dat niet het geval voor het plaatsen van een afbeelding op het 3D model. Een van de redenen was omdat het model over meerdere vlakken beschikte, na veel zoeken is dan uiteindelijk gekozen voor een \texttt{PlaneGeometry}. Deze oplossing werd dan opnieuw herzien en vervangen door de \texttt{Image} component uit de \texttt{react-three/drei} bibliotheek.
+
+De 3D tekst is ook een aantal fases ondergaan. Een van de problemen was dat de font die gebruikt wordt over de gehele conventionele versie niet compatibel is. Er vond namelijk af en toe een glitch plaats bij een of meerdere van de letters of cijfers in de font. Niet alle fonts konden dus voor dit project gebruikt worden, na een aantal fonts te proberen is uiteindelijk gekozen voor \texttt{Work Sans Regular}.
+
+\section{Detail pagina}
+
+\subsection{DetailsScene}
+
+\subsubsection{DetailsItem}
+
+
+
+
+
+\subsection{Hindernissen en uitdagingen}
