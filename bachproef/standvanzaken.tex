@@ -90,7 +90,7 @@ Om een model aan de scene toe te voegen, zijn er twee vereisten: de geometrie en
 
 \begin{LVerbatim}
 const geometrie = new THREE.BoxGeometry(1, 1, 1)
-const materiaal = new THREE.MeshStandardMaterial({color: 0xffffff})
+const materiaal = new THREE.MeshBasicMaterial({color: 0x0000ff})
 
 const mesh = new THREE.Mesh(geometrie, materiaal)
 
@@ -99,6 +99,14 @@ scene.add(mesh)
 
 In deze code wordt eerst een kubus aan gemaakt met een breedte, hoogte en diepte gelijk aan 1. Hierbij is 1 een arbitraire eenheid en kan dus 1 centimeter, 1 meter, etc. zijn. Dit is een vaak gebruikt concept wanneer gewerkt wordt met 3D software. Vervolgens maken we het materiaal aan en geven we het een kleur die in dit geval wit is. Hierna wordt een mesh geïnstantieerd waar de geometrie en het materiaal aan meegeven worden om dan tenslotte de mesh toe te voegen aan de scene.
 
+\begin{figure}
+\centering
+\includegraphics[width=1\linewidth]{graphics/boxGeometry}
+\caption[BoxGeometry mesh visualisatie]{BoxGeometry mesh visualisatie}
+\label{fig:boxGeometry}
+\end{figure}
+
+\newpage
 \subsubsection{De camera}
 
 Nu de mesh is toegevoegd aan de scene is de volgende stap een camera plaatsen in de scene. De camera is niet zichtbaar en is eerder een theoretisch 'punt' waaruit de render zal plaatsvinden. Er is ook een mogelijkheid om meerdere camera's te gebruiken maar dit is zeldzaam. Net zoals er vele soorten geometrieën en materialen zijn komen ook meerderde soorten camera's voor.
@@ -189,21 +197,50 @@ Met de getElapsedTime() methode kan de tijd die verstreken is gevraagd worden en
 
 Three.js biedt een hoop camera's aan, in dit stuk worden de voornaamste vermeld.
 
-De meeste gebruikte camera is de perspectief camera, die al eerder vermeld is, hiervoor is een gezichtsveld waarde nodig en een beeldverhouding waarde. De naam van de camera is vanzelfsprekend, wanneer deze gebruikt wordt dan zal de scene vanuit een perspectief bekeken worden. Dat wil zeggen dat het bekeken wordt vanaf 1 punt en waar dat punt is zal bepalen hoe de scene gerendered word.
+De meeste gebruikte camera is de perspectief camera \ref{fig:perspectiefCamera}, die al eerder vermeld is, hiervoor is een gezichtsveld waarde nodig en een beeldverhouding waarde. De naam van de camera is vanzelfsprekend, wanneer deze gebruikt wordt dan zal de scene vanuit een perspectief bekeken worden. Dat wil zeggen dat het bekeken wordt vanaf 1 punt en waar dat punt is zal bepalen hoe de scene gerendered word.
 
-De orthographische camera is een andere mogelijkheid, deze camera zal objecten renderen zodat de afstand van het object tot de camera geen invloed heeft op de grootte. Dit kan handig zijn voor 2D scenes of UI elementen te renderen \autocite{threejs2023}.
+De orthografische camera \ref{fig:orthografischeCamera} is nog een mogelijkheid, deze camera zal objecten renderen zodat de afstand van het object tot de camera geen invloed heeft op de grootte. Dit kan handig zijn voor 2D scenes of UI elementen te renderen \autocite{threejs2023}.
 
+\begin{figure}
+	\centering
+	\includegraphics[width=1\linewidth]{graphics/perspectiefCamera}
+	\caption[Perspectief camera visualisatie]{Perspectief camera visualisatie wireframe BoxGeometry}
+	\label{fig:perspectiefCamera}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=1\linewidth]{graphics/orthografischeCamera}
+	\caption[Orthografische camera visualisatie]{Orthografische camera visualisatie wireframe BoxGeometry}
+	\label{fig:orthografischeCamera}
+\end{figure}
+\newpage
 \subsubsection{Soorten geometriën}
 
-De bibliotheek van Three.js heeft een veel basis geometriën waar developers gemakkelijk gebruik van kunnen maken. Tijdens het schrijven van deze scriptie zijn er 18 beschikbaar waaronder de BoxGeometry, PlaneGeometry, SphereGeometry, TextGeometry en nog meer.
+De bibliotheek van Three.js heeft een veel basis geometriën waar developers gemakkelijk van gebruik kunnen maken. Tijdens het schrijven van deze scriptie zijn er 18 beschikbaar waaronder de BoxGeometry \ref{fig:boxGeometry}, PlaneGeometry, SphereGeometry, TextGeometry en nog meer.
 
-Een geometrie in Three.js bestaat uit vertices en vlakken. Elke geometrie heeft in essentie een hoop driehoeken met 3 vertices of hoekpunten en een vlak. Wanneer deze driehoeken gecombineerd worden geeft het als resultaat een geometrie. Hiermee kan Three.js zeer complexe maar ook zeer simpele vormen representeren. Als voorbeeld kan een vlak genomen worden of in Three.js genaamd een PlaneGeometry, een vlak bestaat uit twee driehoeken en heeft dus 6 vertices. Een stap hoger is dan de BoxGeometry die uit 6 vlakken bestaat en op zijn beurt dus bestaat uit 12 driehoeken of 36 vertices. Nog een paar stappen hoger en dan kan een SphereGeometry gemaakt worden, deze vorm is een stuk complexer want het lijkt alsof het een bol is maar bestaat eigenlijk uit een hoop vlakken en heeft dus veel meer driehoeken nodig om gerealiseerd te worden  \autocite{threejs2023}.
+Een geometrie in Three.js bestaat uit vertices en vlakken. Elke geometrie heeft in essentie een hoop driehoeken met 3 vertices of hoekpunten en een vlak. Wanneer deze driehoeken gecombineerd worden geeft het als resultaat een geometrie. Hiermee kan Three.js zeer complexe maar ook zeer simpele vormen representeren. Als voorbeeld kan een vlak genomen worden of in Three.js genaamd een PlaneGeometry \ref{fig:planeGeometry}, een vlak bestaat uit twee driehoeken en heeft dus 6 vertices. Een stap hoger is dan de BoxGeometry \ref{fig:boxGeometry} die 6 vlakken omvat en dus uit 12 driehoeken of 36 vertices bestaat. Nog een paar stappen hoger en dan kan een SphereGeometry \ref{fig:sphereGeometry} gemaakt worden, deze vorm is een stuk complexer want het lijkt alsof het een bol is maar in realiteit bestaat de bol uit een hoop vlakken en heeft dus veel meer driehoeken nodig om gerealiseerd te worden \autocite{threejs2023}.
 
-Hoe meer driehoeken er gebruikt worden hoe meer detail de developer dus kan verkrijgen maar dit komt met een prijs. Elke vertex heeft een coördinaat en moet gerendered worden, wanneer er animaties gebeuren in de scene en de developer is iets te enthousiast geweest dan kan al zeer snel een vertaging zijn. Zeker als we weten dat er nog veel computers zijn waar de GPU nog niet optimaal is, bijvoorbeeld op gsm's. Wanneer men dus met animaties werkt is het vaak een vuistregel om zo weinig mogelijk driehoeken te gebruiken voor de geometriën. Zo kan de beste omgeving voorzien worden om elke gebruiker de optimale ervaring te geven.
+Hoe meer driehoeken er gebruikt worden hoe meer detail de developer dus kan implementeren maar dit brengt een prijs met zich mee. Elke vertex heeft een coördinaat en moet gerendered worden, wanneer er animaties gebeuren in de scene en de developer is iets te enthousiast geweest dan kan al zeer snel een vertaging zijn. Zeker als we weten dat er nog veel computers zijn waar de GPU nog niet optimaal is, bijvoorbeeld op gsm's. Wanneer men dus met animaties werkt is het vaak een vuistregel om zo weinig mogelijk driehoeken te gebruiken voor de geometriën. Zo kan de beste omgeving voorzien worden om elke gebruiker de optimale ervaring te geven.
 
+\begin{figure}
+	\centering
+	\includegraphics[width=1\linewidth]{graphics/planeGeometry}
+	\caption[Visualisatie wireframe PlaneGeometry]{Visualisatie wireframe PlaneGeometry}
+	\label{fig:planeGeometry}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=1\linewidth]{graphics/sphereGeometry}
+	\caption[Visualisatie wireframe SphereGeometry]{Visualisatie wireframe SphereGeometry}
+	\label{fig:sphereGeometry}
+\end{figure}
+
+\newpage
 \subsubsection{Texturen}
 
-Texturen zijn afbeeldingen die over de vlakken van en geometrie gelegd worden. Hierbij bestaan de volgende soorten texturen: 
+Texturen zijn afbeeldingen die over de vlakken van een geometrie gelegd worden. Hierbij bestaan de volgende soorten texturen: 
 
 \begin{itemize}
 \item Kleur of albedo
@@ -223,6 +260,42 @@ Omdat texturen eigenlijk afbeeldingen zijn worden ze met normale Javascript code
 const textuur = new THREE.Texture(afbeelding)
 \end{LVerbatim}
 
+\begin{figure}
+	\centering
+	\includegraphics[width=1\linewidth]{graphics/}
+	\caption[]{}
+	\label{fig:1}
+\end{figure}
+\begin{figure}
+	\centering
+	\includegraphics[width=1\linewidth]{graphics/}
+	\caption[]{}
+	\label{fig:2}
+\end{figure}
+\begin{figure}
+	\centering
+	\includegraphics[width=1\linewidth]{graphics/}
+	\caption[]{}
+	\label{fig:3}
+\end{figure}
+\begin{figure}
+	\centering
+	\includegraphics[width=1\linewidth]{graphics/}
+	\caption[]{}
+	\label{fig:4}
+\end{figure}
+\begin{figure}
+	\centering
+	\includegraphics[width=1\linewidth]{graphics/}
+	\caption[]{}
+	\label{fig:5}
+\end{figure}
+\begin{figure}
+	\centering
+	\includegraphics[width=1\linewidth]{graphics/}
+	\caption[]{}
+	\label{fig:6}
+\end{figure}
 \subsubsection{Materialen}
 
 Materialen worden in Three.js gebruikt om een kleur te voorzien voor elke zichtbare pixel van een geometrie. De algoritmes die bepalen welke pixel welke kleur krijgt zijn geschreven in specifieke 'shader' programma's. Shaders schrijven is een uiterst complex gegeven en is dus zeker niet voor iedereen weggelegd maar gelukkig biedt Three.js materialen aan met ingebouwde shaders \autocite{Simon2023}.
