@@ -59,7 +59,7 @@ In de \texttt{HomeScene} component worden alle vereiste gegevens doorgegeven om 
 	damping={0.1}
 >
 	<Scroll>
-		<Suspense fallback={<Placeholder position-y={1} scale={[200, 200, 200]} />}>
+		<Suspense fallback={<Placeholder position-y={1} scale={[20, 20, 20]} />}>
 			<group>
 			{
 				releases?.map((release, index) => {
@@ -256,7 +256,30 @@ De 3D tekst is ook een aantal fases ondergaan. Een van de problemen was dat de f
 
 \section{Detail pagina}
 
+Het originele idee voor de detail pagina was om dezelfde scene te behouden en een animatie te voorzien om tussen de twee pagina's te wisselen. Na een aantal pogingen is toch gekozen voor een de oude scene te verwijderen en een nieuwe in te brengen wanneer een gebruiker op een item klikt.
+
+De hoofdtitel van de detail pagina is dezelfde als de conventionele en bevat ook een link naar de spotify URL voor de release. Verder bevind zich op de linkerhelft van de pagina een 3D representatie van de album cover met een \texttt{ADD TO CART} knop. De rechterhelft van de pagina bevat alle details van de release die ook dezelfde zijn als bij de conventionele versie behalve dat de \texttt{ADD TO CART} knop uiteraard verplaatst is.
+
 \subsection{DetailsScene}
+
+\begin{BVerbatim}
+return (
+	<>
+		<directionalLight 
+			position={[1, 2, 3]} 
+		/>
+		<ambientLight intensity={0.5} />
+		<OrbitControls enableZoom={false} enablePan={false} enableRotate={false}/>
+		<Suspense fallback={<Placeholder position-y={1} scale={[20, 20, 20]} />}>
+			<group>
+				<DetailsItem currentAlbum={currentAlbum} price={price}/>
+			</group>
+		</Suspense>
+	</>
+)
+\end{BVerbatim}
+
+In deze scene zit als eerste een directioneel en omgevingslicht, vervolgens zijn ook \texttt{OrbitControls} toegevoegd. Als laatste houden we de \texttt{DetailsItem} 
 
 \subsubsection{DetailsItem}
 
@@ -265,3 +288,5 @@ De 3D tekst is ook een aantal fases ondergaan. Een van de problemen was dat de f
 
 
 \subsection{Hindernissen en uitdagingen}
+
+Zoals eerder al vermeld is was het de bedoeling om een volledig aaneenhangende ervaring te creëren tussen de home pagina en detail pagina maar dit bleek een stap te veel te zijn. Om dit te doen moet namelijk van niet alleen van camera maar ook van controls gewisseld worden. Met meer ervaring en tijd zou dit feit gerealiseerd kunnen worden maar tevergeefs.
