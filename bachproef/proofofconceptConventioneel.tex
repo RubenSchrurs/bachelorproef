@@ -28,7 +28,7 @@ De \texttt{ReleaseItem} bestaat uit de album cover, de titel en de prijs van het
 
 De grootste uitdaging van de home pagina was het genereren van de prijzen voor iedere release. Hierbij zijn er mogelijke opties overlopen zoals werken met een databank om de prijzen bij te houden. De reden dat geopteerd is om deze data in de \texttt{localStorage} op te slaan is omdat hiervoor geen API calls nodig zijn en dus zo de rate limit minder snel overschreden zal worden.
 
-\begin{figure}
+\begin{figure}[h]
 	\centering
 	\includegraphics[width=1\linewidth]{graphics/desktopHomeConventioneel}
 	\caption[Desktop home pagina conventioneel]{Desktop home pagina conventioneel}
@@ -47,7 +47,7 @@ Wanneer de gebruiker zich op de Detail pagina bevindt worden alle details getoon
 
 Bij de detail pagina zijn weinig hindernissen opgetreden, een van de uitdagingen was om een \texttt{GO BACK} knop te voorzien. Deze is nog op het laatste toegevoegd en vanuit een design perspectief dus niet het optimale moment. De knop bevindt zich nu in de header i.p.v. van het logo als men naar een pagina gaat die niet de home pagina is. Wanneer een release toegevoegd wordt aan de winkelmand dan zal deze opgeslagen worden in de \texttt{localStorage}.
 
-\begin{figure}
+\begin{figure}[h]
 	\centering
 	\includegraphics[width=1\linewidth]{graphics/desktopDetailConventioneel}
 	\caption[Desktop detail pagina conventioneel]{Desktop detail pagina conventioneel}
@@ -70,7 +70,7 @@ De \texttt{Cart} component haalt alle \texttt{cartItems} op uit de \texttt{local
 
 Een \texttt{CartItem} bestaat uit de afbeelding en naam van de release, een dropdown keuzevak waarbij de kwantiteit kan veranderd worden, een \texttt{Remove} knop en de individuele prijs van het item.
 
-\begin{figure}
+\begin{figure}[h]
 	\centering
 	\includegraphics[width=1\linewidth]{graphics/desktopCart}
 	\caption[Desktop cart pagina]{Desktop cart pagina}
@@ -85,7 +85,7 @@ Onder de header bevindt zich de zoekbalk, deze kan de gebruiker over de volledig
 
 Een van de uitdagingen was om een prijs te genereren voor elk \texttt{ReleaseItem} wanneer de gebruiker een zoek query uitvoert. Hiernaast worden enkel resultaten getoond als er twee of meer karakters zijn in de query van de gebruiker, de reden hiervoor is om minder API calls uit te voeren.
 
-\begin{figure}
+\begin{figure}[h]
 	\centering
 	\includegraphics[width=1\linewidth]{graphics/desktopSearch}
 	\caption[Desktop search]{Desktop search}
