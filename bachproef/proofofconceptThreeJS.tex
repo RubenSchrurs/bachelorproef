@@ -9,7 +9,7 @@
 
 In dit hoofdstuk zal overlopen worden welke aanpassingen gemaakt zijn aan de conventionele POC. Hierbij zal een kijk genomen worden in hoe deze elementen opgebouwd zijn en welke voordelen ze met zich meebrengen.
 
-Er zijn op twee plaatsen in de webshop aanpassingen gemaakt en dat is op de home pagina en de detail pagina. Voor de implementatie van de componenten is de React Three Fiber bibliotheek gebruikt.
+Er zijn op twee plaatsen in de webshop aanpassingen gemaakt en dat is op de home pagina en de detail pagina. Voor de implementatie van de componenten is voornamelijk de React Three Fiber bibliotheek gebruikt.
 
 \section{Home pagina}
 
@@ -17,7 +17,7 @@ Voor de home pagina zijn verschillende opties overwogen en uiteindelijk is gekoz
 
 Onderaan de pagina bevindt zich een minimap die de positie van de gebruiker op de carrousel aangeeft.
 
-De beide componenten bevinden zich in een \texttt{Canvas} die zich over de breedte van de volledige home pagina strekt. Het \texttt{Canvas} is als volgt geïnitialiseerd a.d.h.v. React Three Fiber: 
+De beide componenten bevinden zich in een \texttt{Canvas} object die zich over de breedte van de volledige home pagina strekt. Het \texttt{Canvas} object wordt als volgt geïnitialiseerd a.d.h.v. React Three Fiber: 
 
 \newpage
 
@@ -35,7 +35,7 @@ De beide componenten bevinden zich in een \texttt{Canvas} die zich over de breed
 </Canvas>
 \end{lstlisting}
 
-Het \texttt{Canvas} krijgt standaard instellingen mee voor de renderer via de 'gl' property. De camera wordt ook 250 eenheden naar achter geplaatst zodat de objecten in de scene kunnen gezien worden. Binnen in het \texttt{Canvas} wordt een \texttt{HomeScene} component meegegeven met de nodige data voor het tonen van de releases.
+Het \texttt{Canvas} krijgt standaard instellingen mee voor de renderer via de 'gl' property. Een van deze instellingen is de anitalias boolean, deze zal voor een natuurlijke waas zorgen rond de diagonale lijnen. De camera wordt ook 250 eenheden naar achter geplaatst zodat de objecten in de scene kunnen gezien worden door de gebruiker. Binnen in het \texttt{Canvas} wordt een \texttt{HomeScene} component meegegeven met de nodige data voor het tonen van de releases.
 
 \begin{figure}[h]
 	\centering
@@ -66,10 +66,7 @@ In de \texttt{HomeScene} component worden alle vereiste gegevens doorgegeven om 
 						<ReleaseItem3D
 							key={index}
 							index={index}
-							position={[
-								index * xW,
-								0, 0
-								]}
+							position={[index * xW,0, 0]}
 							scale={scale}
 							setScale={setScale}
 							release={release}
@@ -92,11 +89,11 @@ Als eerste wordt een directioneel licht object meegegeven met de volgende props:
 	\item position={[0, 0, 1]}
 \end{itemize}
 
-De \texttt{castShadow} prop is vanzelfsprekend en zorgt er dus voor dat dit licht object de mogelijkheid krijgt om schaduwen de produceren. De positie van het licht ligt niet in het centrum van de scene omdat de 3D tekst anders moeilijker zichtbaar is. Dit soort licht zal ervoor zorgen dat alle objecten in de scene even belicht zijn vanuit dezelfde richting.
+De \texttt{castShadow} prop is vanzelfsprekend en zorgt er dus voor dat dit licht object de mogelijkheid krijgt om schaduwen de produceren. De positie van het licht ligt niet in het centrum van de scene omdat de 3D tekst in dit geval moeilijk zichtbaar is. Dit soort licht zal ervoor zorgen dat alle objecten in de scene even belicht zijn vanuit dezelfde richting.
 
 Het volgende licht is een omgevingslicht of \texttt{AmbientLight} object, dit licht zorgt ervoor dat alle vlakken van de 3D tekst zichtbaar zijn. De intensiteit is lager dan de normaal waarde voor een gevoel van perspectief te creëren.
 
-\texttt{ScrollControls} is een van de componenten die beschikbaar wordt gesteld door de bibliotheek react-three/drei. Voor deze component geef je het aantal pagina's door, hiervoor wordt een berekening uitgevoerd op basis van de breedte van de viewport, de lengte van het aantal weergegeven items, en de breedte van elk item plus de opening of 'gap' tussen elk item. De scroll richting kan ook bepaald worden en zal veranderen op basis van de breedte van de viewport. De laatste prop is de 'damping' die bepaald in welke mate de scrollbeweging gedempt wordt.
+\texttt{ScrollControls} is een van de componenten die beschikbaar wordt gesteld door de bibliotheek react-three/drei. Voor deze component geef je het aantal pagina's door, hiervoor wordt een berekening uitgevoerd op basis van de breedte van de viewport, de lengte van het aantal weergegeven items, en de breedte van elk item plus de opening of 'gap' tussen elk item. De scroll richting kan ook bepaald worden en zal veranderen op basis van de breedte van de viewport. De laatste prop is de \texttt{damping}, deze zal bepalen in welke mate de scrollbeweging gedempt wordt.
 
 Alle 3D objecten waardoor gescrolld moet worden worden binnen in een \texttt{Scroll} component geplaatst.
 
@@ -153,9 +150,9 @@ De \texttt{ReleaseItem3D} component heeft volgende renderfunctie:
 \end{lstlisting}
 
 De objecten worden genest in een \texttt{<group>} tag, dit is verplicht bij het gebruik van meerdere R3F componenten en wordt ook gebruikt om de positie van het volledige object te bepalen.
-De \texttt{Image} component is een \texttt{react-three/drei} abstractie en krijgt een gepaste schaal mee die afgestemd is op de grootte van de scene alsook de url voor de afbeelding. Wanneer er geklikt wordt op de component dan zal de gebruiker doorverwezen worden naar de detailpagina. Hiernaast wordt ook een boolean bijgehouden of de gebruiker al dan niet hovered over de afbeelding. Indien deze waarde op \texttt{true} komt te staan dan zullen twee 3D text objecten toegevoegd worden in de scene gepositioneerd boven de afbeelding. Linksboven de afbeelding is dat de naam van de release en rechtsboven de prijs, wanneer de naam van de release te lang is dan zal de string waarde afgekapt wordt een beletselteken ingevoegd.
+De \texttt{Image} component is een \texttt{react-three/drei} abstractie en krijgt een gepaste schaal mee die afgestemd is op de grootte van de scene alsook de url voor de afbeelding. Wanneer er geklikt wordt op de component dan zal de gebruiker doorverwezen worden naar de detailpagina. Hiernaast wordt ook een boolean bijgehouden of de gebruiker al dan niet hovered over de afbeelding. Indien deze waarde op \texttt{true} komt te staan dan zullen twee 3D text objecten toegevoegd worden in de scene gepositioneerd boven de afbeelding. Linksboven de afbeelding is dat de naam van de release en rechtsboven de prijs, wanneer de naam van de release te lang is dan zal de string waarde afgekapt worden en wordt een beletselteken ingevoegd.
 
-De \texttt{ReleaseItem3D} component bevat een \texttt{useFrame} hook die voor elke frame een nieuwe render zal uitvoeren. 
+De \texttt{ReleaseItem3D} component bevat een \texttt{useFrame()} hook die voor elke frame een nieuwe render zal uitvoeren. 
 \newline
 
 \begin{lstlisting}
@@ -200,17 +197,10 @@ return (
 		{items?.map((_, i) => (
 			<group 
 				key={i} 
-				position={[
-					i * 15 - items.length * 7,
-					- height / 2 + 25,
-					-5
-				]}
+				position={[i * 15 - items.length * 7, - height / 2 + 25, -5]}
 			>
 				<Line 
-					points={[
-						new THREE.Vector3(0, -20, 0),
-						new THREE.Vector3(0, 20, 0)
-					]} 
+					points={[new THREE.Vector3(0, -20, 0), new THREE.Vector3(0, 20, 0)]} 
 					color={App.secondaryColor} 
 					lineWidth={1}
 				/>
@@ -220,8 +210,8 @@ return (
 )
 \end{lstlisting}
 
-Er wordt over de items gemapt die zijn meegegeven aan de \texttt{Minimap} en voor elk item een \texttt{Line} component gegenereerd. De \texttt{Line} bestaat uit twee \texttt{Vector3} objecten en zal tussen deze twee objecten een lijn tekenen met de meegegeven kleur en dikte. Elke lijn krijgt een positie die gebaseerd is op de lengte van het aantal items en de hoogte van de viewport.
-Nu alle lijnen gerenderd zijn wordt er ook elke frame een nieuwe render gedaan a.d.h.v. de volgende \texttt{useFrame} hook.
+Er wordt over de items gemapt die meegegeven zijn aan de \texttt{Minimap} en voor elk item een \texttt{Line} component gegenereerd. De \texttt{Line} bestaat uit twee \texttt{Vector3} objecten en zal tussen deze twee objecten een lijn tekenen met de meegegeven kleur en dikte. Elke lijn krijgt een positie die gebaseerd is op de lengte van het aantal items en de hoogte van de viewport.
+Nu alle lijnen gerenderd zijn wordt er ook elke frame een nieuwe render gedaan a.d.h.v. de volgende \texttt{useFrame()} hook.
 
 \begin{lstlisting}
 useFrame((state, delta) => {
@@ -229,13 +219,13 @@ useFrame((state, delta) => {
 		const y = scroll.curve(
 			index / items.length - 0.15 / items.length,
 			4 / items.length
-		)s
+		)
 		child.scale.y = damp(child.scale.y, .1 + y, .8, .2, delta)
 	})
 })
 \end{lstlisting}
 
-In deze useFrame wordt voor elke lijn van de minimap een \texttt{y} variabele gemaakt op basis van het aantal lijnen en de plaats van de individuele lijn. Vervolgens gebruiken we deze om de schaal van de lijn aan te passen met de \texttt{damp()} functie. Deze transformaties zorgen ervoor dat een golf effect over de lijnen wordt geplaatst wanneer de gebruiker scrollt, zie fig. \ref{fig:minimap}.
+In deze \texttt{useFrame()} wordt voor elke lijn van de minimap een \texttt{y} variabele gemaakt op basis van het aantal lijnen en de plaats van de individuele lijn. Vervolgens gebruiken we deze om de schaal van de lijn aan te passen met de \texttt{damp()} functie. Deze transformaties zorgen ervoor dat een golf effect over de lijnen wordt geplaatst wanneer de gebruiker scrollt, zie fig. \ref{fig:minimap}.
 
 \begin{figure}[h]
 	\centering
@@ -248,13 +238,13 @@ In deze useFrame wordt voor elke lijn van de minimap een \texttt{y} variabele ge
 
 Het originele idee was om een platenhoes en vinyl plaat in 3D te modelleren en deze dan te importeren in de scene. Dit bleek echter zeer tijdrovend zeker voor een beginner in 3D modelleren. Alhoewel het gelukt is om een platenhoes te modelleren was dat niet het geval voor het plaatsen van een afbeelding op het 3D model. Een van de redenen was omdat het model over meerdere vlakken beschikte, na veel zoeken is dan uiteindelijk gekozen voor een \texttt{PlaneGeometry}. Deze oplossing werd dan opnieuw herzien en vervangen door de \texttt{Image} component uit de \texttt{react-three/drei} bibliotheek.
 
-De 3D tekst is ook een aantal fases ondergaan. Een van de problemen was dat de font die gebruikt wordt over de gehele conventionele versie niet compatibel is. Er vond namelijk af en toe een glitch plaats bij een of meerdere van de letters of cijfers in de font. Niet alle fonts konden dus voor dit project gebruikt worden, na een aantal fonts te proberen is uiteindelijk gekozen voor \texttt{Work Sans Regular}.
+De 3D tekst is ook een aantal fases ondergaan. Een van de problemen was dat de font die gebruikt wordt over de gehele conventionele versie van de POC niet compatibel is. Er vond namelijk af en toe een glitch plaats bij een of meerdere van de letters en/of cijfers in de font. Niet alle fonts konden dus voor dit project gebruikt worden, na een aantal fonts te proberen is uiteindelijk gekozen voor \texttt{Work Sans Regular}.
 
 \section{Detail pagina}
 
-Het originele idee voor de detail pagina \ref{fig:detailPageThree}was om dezelfde scene te behouden en een animatie te voorzien om tussen de twee pagina's te wisselen. Na een aantal pogingen is toch gekozen voor een de oude scene te verwijderen en een nieuwe in te brengen wanneer een gebruiker op een item klikt.
+Het originele idee voor de detail pagina \ref{fig:detailPageThree} was om dezelfde scene te behouden en een animatie te voorzien om tussen de twee pagina's te wisselen. Na een aantal pogingen is toch gekozen voor een de oude scene te verwijderen en een nieuwe in te brengen wanneer een gebruiker op een item klikt.
 
-De hoofdtitel van de detail pagina is dezelfde als de conventionele en bevat ook een link naar de spotify URL voor de release. Verder bevind zich op de linkerhelft van de pagina een 3D representatie van de album cover met een \texttt{ADD TO CART} knop. De rechterhelft van de pagina bevat alle details van de release die ook dezelfde zijn als bij de conventionele versie behalve dat de \texttt{ADD TO CART} knop uiteraard verplaatst is.
+De hoofdtitel van de detail pagina is dezelfde als de conventionele en bevat ook een link naar de spotify URL voor de release. Verder bevindt zich op de linkerhelft van de pagina een 3D representatie van de album cover met een \texttt{ADD TO CART} knop. De rechterhelft van de pagina bevat alle details van de release die dezelfde zijn als bij de conventionele versie met uitzondering dat de \texttt{ADD TO CART} knop uiteraard verplaatst is.
 
 \begin{figure}[h]
 	\centering
@@ -300,7 +290,7 @@ function ImageWrapper({ children }) {
 }
 \end{lstlisting}
 
-De \texttt{ImageWrapper} functie zal de inkomende informatie verwerken en er bewerkingen op uitvoeren. Om te beginnen nemen we de positie van de cursor, hierna wordt de positie van alle kinderen veranderd en voor dit geval is dat alles dat zich in de \texttt{group} tag bevind. De \texttt{lerp()} zal tussen twee waarden lineair interpoleren, de eerste keer dat deze wordt gebruikt is tussen de positie van de kinderen en de positie van de cursor met een factor van 0.05. Voor de rotatie van de kinderen wordt deze een tweede keer gebruikt, nu is dat tussen de huidige rotatie en opnieuw de plaats van de cursor. Op het einde van de functie worden de kinderen teruggegeven en zo wordt de \texttt{ImageWrapper} functie constant opnieuw uitgevoerd. Door deze functie wordt een animatie voorzien die snel kan reageren op de beweging van de gebruiker.
+De \texttt{ImageWrapper} functie zal de inkomende informatie verwerken en er bewerkingen op uitvoeren. Om te beginnen nemen we de positie van de cursor, hierna wordt de positie van alle kinderen veranderd en voor dit geval is dat alles dat zich in de \texttt{<group/>} tag bevind. De \texttt{lerp()} functie zal tussen twee waarden lineair interpoleren, de eerste keer dat deze wordt gebruikt is tussen de positie van de kinderen en de positie van de cursor met een factor van 0.05. Voor de rotatie van de kinderen wordt deze een tweede keer gebruikt, nu is dat tussen de huidige rotatie en opnieuw de plaats van de cursor. Op het einde van de functie worden de kinderen teruggegeven en zo wordt de \texttt{ImageWrapper} functie constant opnieuw uitgevoerd. Door deze functie wordt een animatie voorzien die snel kan reageren op de beweging die de gebruiker maakt met de cursor. Beweegt de cursor naar links dan zal de mesh volgen naar links, idem met alle andere richtingen.
 
 \begin{lstlisting}
 return (
@@ -330,7 +320,7 @@ return (
 )
 \end{lstlisting}
 
-Binnenin de \texttt{ImageWrapper} zit een \texttt{Html} component en een \texttt{Image} component. Ze komen beiden opniew uit de \texttt{react-three/drei} package, voor het \texttt{Html} gedeelte lijkt het alsof de knop plakt aan de afbeelding en dat is ook het doeleind van deze component. Zo kunnen html elementen die normaal niet in een scene geplaatst kunnen worden toch geïmplementeerd worden. De knop werkt exact hetzelfde als de knop in de conventionele versie van de POC, voor de afbeelding is ook dezelfde methode gebruikt als in de home pagina.
+Binnenin de \texttt{ImageWrapper} zit een \texttt{Html} component en een \texttt{Image} component. Ze komen beiden opniew uit de \texttt{react-three/drei} package, voor het \texttt{Html} gedeelte lijkt het alsof de knop plakt aan de afbeelding en dat is ook het doeleind van deze component. Zo kunnen html elementen die normaal niet in een scene geplaatst worden alsnog geïmplementeerd worden. De knop werkt exact hetzelfde als de knop in de conventionele versie van de POC, voor de afbeelding is ook dezelfde methode gebruikt als in de home pagina.
 
 \subsection{Hindernissen en uitdagingen}
 

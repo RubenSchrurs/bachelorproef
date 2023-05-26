@@ -12,7 +12,7 @@ In dit hoofdstuk zal een overzicht gegeven worden over hoe de conventionele webs
 \section{Home pagina}
 
 \subsection{Navigeren door de home pagina}
-De opbouw van de home pagina is als volgt. Wanneer men de conventionele webshop opent dan krijgt men een Trending pagina te zien, deze is gebaseerd op de nieuwste releases van Spotify. Als een gebruiker klikt op een ReleaseItem dan wordt die verwezen naar de Detail pagina van deze release. De gebruiker kan ook op een \texttt{Show More} knop klikken indien die meer dan 8 releases wil zien. Zie figuur \ref{fig:desktopHomeConventioneel} voor een beeld van de home pagina.
+De opbouw van de home pagina is als volgt. Wanneer men de conventionele webshop opent dan krijgt men een Trending pagina te zien, deze is gebaseerd op de nieuwste releases van Spotify. Als een gebruiker klikt op een \texttt{ReleaseItem} dan wordt die verwezen naar de Detail pagina van deze release. De gebruiker kan ook op een \texttt{Show More} knop klikken indien die meer dan 8 releases wil zien. Zie figuur \ref{fig:desktopHomeConventioneel} voor een beeld van de home pagina.
 
 \subsection{Componenten}
 
@@ -22,7 +22,7 @@ Deze component haalt alle nieuwste releases op a.d.h.v een provider. Hierna word
 
 \subsubsection{ReleaseItem}
 
-De \texttt{ReleaseItem} bestaat uit de album cover, de titel en de prijs van het album. De afbeelding, titel en artiest naam worden uit de Spotify API gehaald maar de prijs is gegenereerd m.b.v. een hook genaamd \texttt{useAlbumPrices} die zich in de provider bevindt. Bij het initialiseren van de provider wordt deze hook aangeroepen, waarbij elke opgehaalde release een prijs krijgt toegewezen. De gegenereerde prijzen worden samen met de id van de release opgeslagen in de \texttt{localStorage}. Hierdoor blijven de prijzen hetzelfde en moeten ze niet telkens opnieuw gegenereerd worden.
+De \texttt{ReleaseItem} component bestaat uit de album cover, titel en prijs van het album. De afbeelding, titel en artiest naam worden uit de Spotify API gehaald maar de prijs is gegenereerd m.b.v. een hook genaamd \texttt{useAlbumPrices} die zich in de provider bevindt. Bij het initialiseren van de provider wordt deze hook aangeroepen, waarbij elke opgehaalde release een prijs krijgt toegewezen. De gegenereerde prijzen worden samen met de id van de release opgeslagen in de \texttt{localStorage}. Hierdoor blijven de prijzen hetzelfde en moeten ze niet telkens opnieuw gegenereerd worden.
 
 \subsection{Hindernissen en uitdagingen}
 
@@ -45,7 +45,7 @@ Wanneer de gebruiker zich op de Detail pagina bevindt worden alle details getoon
 
 \subsection{Hindernissen en uitdagingen}
 
-Bij de detail pagina zijn weinig hindernissen opgetreden, een van de uitdagingen was om een \texttt{GO BACK} knop te voorzien. Deze is nog op het laatste toegevoegd en vanuit een design perspectief dus niet het optimale moment. De knop bevindt zich nu in de header i.p.v. van het logo als men naar een pagina gaat die niet de home pagina is. Wanneer een release toegevoegd wordt aan de winkelmand dan zal deze opgeslagen worden in de \texttt{localStorage}.
+Bij de detail pagina zijn weinig hindernissen opgetreden, een van de uitdagingen was om een \texttt{GO BACK} knop te voorzien. Deze is nog op het laatste toegevoegd en is vanuit een design perspectief dus niet het optimale moment. De knop bevindt zich nu in de header i.p.v. van het logo als men naar een pagina gaat die niet de home pagina is. Wanneer een release toegevoegd wordt aan de winkelmand dan zal deze opgeslagen worden in de \texttt{localStorage}.
 
 \begin{figure}[h]
 	\centering
@@ -64,7 +64,7 @@ Nu kan de gebruiker de geselecteerde releases bekijken in de winkelmand door in 
 
 \subsubsection{Cart}
 
-De \texttt{Cart} component haalt alle \texttt{cartItems} op uit de \texttt{localStorage} waar het id van de release wordt bijgehouden samen met de kwantiteit en prijs. Hierna worden een aantal calculaties uitgevoerd zijnde het berekenen van het aantal items in de winkelmand samen met de totale prijs om de gebruiker een duidelijk overzicht te geven van de order. Voor elk item wordt een \texttt{CartItem} component aangemaakt en indien er geen items zijn dan word een gepaste boodschap getoond.
+De \texttt{Cart} component haalt alle \texttt{cartItems} op uit de \texttt{localStorage} waar het id van de release wordt bijgehouden samen met de kwantiteit en prijs. Hierna worden een aantal calculaties uitgevoerd zijnde het berekenen van het aantal items in de winkelmand samen met de totale prijs om de gebruiker een duidelijk overzicht te geven van de order. Voor elk item wordt een \texttt{CartItem} component aangemaakt, indien er geen items zijn dan word een gepaste boodschap getoond.
 
 \subsubsection{CartItem}
 
@@ -83,7 +83,7 @@ Onder de header bevindt zich de zoekbalk, deze kan de gebruiker over de volledig
 
 \subsection{Hindernissen en uitdagingen}
 
-Een van de uitdagingen was om een prijs te genereren voor elk \texttt{ReleaseItem} wanneer de gebruiker een zoek query uitvoert. Hiernaast worden enkel resultaten getoond als er twee of meer karakters zijn in de query van de gebruiker, de reden hiervoor is om minder API calls uit te voeren.
+Een van de uitdagingen was om een prijs te genereren voor elk \texttt{ReleaseItem} wanneer de gebruiker een zoek query uitvoert. De plaats waar een prijs gegenereerd werd was namelijk op de verkeerde plaats en is naar de provider verplaatst om over de volledige applicatie beschikbaar te zijn. Hierdoor is de state die opgehaald wordt altijd dezelfde ongeacht de pagina waar de gebruiker zich op bevindt. Hiernaast worden enkel resultaten getoond als er twee of meer karakters zijn in de query van de gebruiker, de reden hiervoor is om minder API calls uit te voeren.
 
 \begin{figure}[h]
 	\centering
@@ -98,4 +98,4 @@ De header bevindt zich uiteraard bovenaan en toont het logo en de cart met het a
 
 \subsection{Hindernissen en uitdagingen}
 
-Bij het tonen van het aantal items in de winkelmand wordt een methode gebruikt die zich bevindt in de provider. Dit had een probleem opgelost waarbij de state van het aantal items niet geüpdatet werd ondanks er nieuwe items werden toegevoegd of de kwantiteit veranderd werd in de cart.
+Bij het tonen van het aantal items in de winkelmand wordt een methode gebruikt die zich bevindt in de provider. Dit had een probleem opgelost waarbij de state van het aantal items niet geüpdatet werd ondanks er nieuwe items werden toegevoegd of de kwantiteit veranderd werd in de cart. De oorzaak was gelijk met de fout die zich voordeed in de zoekbalk.
